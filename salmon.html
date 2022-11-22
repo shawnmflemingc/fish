@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juvenile Salmoninae Features</title>
+<script src="https://cdn.jsdelivr.net/npm/alasql@1.7"></script>
+<style>
+ body {
+      font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans";
+  margin: 0;
+    }
+	
+* {
+  box-sizing: border-box;
+}
+
+.mainbody { padding-left:16px }
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  flex: 50%;
+  padding: 10px;
+}
+
+/* Use a media query to add a break point at 800px: */
+@media screen and (max-width: 700px) {
+  .row {
+    display: block; /* The width is 100%, when the viewport is 800px or smaller */
+}
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+#fishform {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+/* Taken from https://markheath.net/post/customize-radio-button-css */
+.radio-toolbar {
+  margin: 10px;
+}
+
+.radio-toolbar input[type="radio"], .radio-toolbar input[type="checkbox"] {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.radio-toolbar label {
+    display: inline-block;
+    background-color: #ddd;
+    padding: 10px 20px;
+    font-family: sans-serif, Arial;
+    font-size: 16px;
+    border: 2px solid #444;
+    border-radius: 4px;
+}
+
+.radio-toolbar label:hover {
+  background-color: #dfd;
+}
+
+.radio-toolbar input[type="radio"]:focus + label,
+.radio-toolbar input[type="checkbox"]:focus + label {
+    border: 2px solid #444;
+}
+
+.radio-toolbar input[type="radio"]:checked + label,
+.radio-toolbar input[type="checkbox"]:checked + label {
+    background-color: #bfb;
+    border-color: #4c4;
+}
+</style>
+
+<script>
+var data = [
+ {
+   "Species": "Brook Trout",
+   "basicpattern": 0,
+   "analfinlen": 0,
+   "analfinlong": 0,
+   "analfinwhite": 1,
+   "adiposeblack": 1,
+   "adiposegrey": 1,
+   "adiposeorange": 0,
+   "redspotsblue": 1,
+   "redspotsinlateral": 0,
+   "redspotsoutlateral": 1,
+   "redspotsdorsal": 0
+ },
+ {
+   "Species": "Lake Trout",
+   "basicpattern": 0,
+   "analfinlen": 0,
+   "analfinlong": 0,
+   "analfinwhite": 1,
+   "adiposeblack": 0,
+   "adiposegrey": 0,
+   "adiposeorange": 0,
+   "redspotsblue": 0,
+   "redspotsinlateral": 0,
+   "redspotsoutlateral": 0,
+   "redspotsdorsal": 0
+ },
+ {
+   "Species": "Atlantic Salmon",
+   "basicpattern": 1,
+   "analfinlen": 0,
+   "analfinlong": 0,
+   "analfinwhite": 0,
+   "adiposeblack": 0,
+   "adiposegrey": 0,
+   "adiposeorange": 1,
+   "redspotsblue": 0,
+   "redspotsinlateral": 1,
+   "redspotsoutlateral": 1,
+   "redspotsdorsal": 0
+ },
+ {
+   "Species": "Brown Trout",
+   "basicpattern": 1,
+   "analfinlen": 0,
+   "analfinlong": 0,
+   "analfinwhite": 1,
+   "adiposeblack": 0,
+   "adiposegrey": 0,
+   "adiposeorange": 1,
+   "redspotsblue": 1,
+   "redspotsinlateral": 1,
+   "redspotsoutlateral": 1,
+   "redspotsdorsal": 1
+ },
+ {
+   "Species": "Rainbow Trout",
+   "basicpattern": 1,
+   "analfinlen": 0,
+   "analfinlong": 0,
+   "analfinwhite": 0,
+   "adiposeblack": 1,
+   "adiposegrey": 0,
+   "adiposeorange": 0,
+   "redspotsblue": 0,
+   "redspotsinlateral": 0,
+   "redspotsoutlateral": 0,
+   "redspotsdorsal": 0
+ },
+ {
+   "Species": "Chinook Salmon",
+   "basicpattern": 1,
+   "analfinlen": 1,
+   "analfinlong": 0,
+   "analfinwhite": 0,
+   "adiposeblack": 0,
+   "adiposegrey": 1,
+   "adiposeorange": 0,
+   "redspotsblue": 0,
+   "redspotsinlateral": 0,
+   "redspotsoutlateral": 0,
+   "redspotsdorsal": 0
+ },
+ {
+   "Species": "Coho Salmon",
+   "basicpattern": 1,
+   "analfinlen": 1,
+   "analfinlong": 1,
+   "analfinwhite": 1,
+   "adiposeblack": 0,
+   "adiposegrey": 1,
+   "adiposeorange": 0,
+   "redspotsblue": 0,
+   "redspotsinlateral": 0,
+   "redspotsoutlateral": 0,
+   "redspotsdorsal": 0
+ },
+ {
+   "Species": "Pink Salmon",
+   "basicpattern": 1,
+   "analfinlen": 1,
+   "analfinlong": 0,
+   "analfinwhite": 0,
+   "adiposeblack": 0,
+   "adiposegrey": 0,
+   "adiposeorange": 0,
+   "redspotsblue": 0,
+   "redspotsinlateral": 0,
+   "redspotsoutlateral": 0,
+   "redspotsdorsal": 0
+ }
+];
+
+function showFishResults() {
+	var sql = `SELECT Species FROM ? WHERE 1=1`  // Starts SQL statement
+	var selecteditem = (document.querySelector('input[name="basicpattern"]:checked').value);
+	if (selecteditem >= 0) {
+		sql += ` AND ([basicpattern] = ${selecteditem})`;
+	}
+
+	selecteditem = (document.querySelector('input[name="afin"]:checked').value);
+	if (selecteditem >= 0) {
+		sql += ` AND ([analfinlen] = ${selecteditem})`;
+	}
+	
+	
+	if (document.getElementById('analfinlong').checked) {
+		sql += ` AND ([analfinlong] = 1)`;		
+	}
+
+	if (document.getElementById('analfinwhite').checked) {
+		sql += ` AND ([analfinwhite] = 1)`;		
+	}
+
+	if (document.getElementById('adiposeblack').checked) {
+		sql += ` AND ([adiposeblack] = 1)`;		
+	}
+	
+	if (document.getElementById('adiposegrey').checked) {
+		sql += ` AND ([adiposegrey] = 1)`;		
+	}
+	
+	if (document.getElementById('adiposeorange').checked) {
+		sql += ` AND ([adiposeorange] = 1)`;		
+	}
+
+	if (document.getElementById('redspotsblue').checked) {
+		sql += ` AND ([redspotsblue] = 1)`;		
+	}
+
+	if (document.getElementById('redspotsinlateral').checked) {
+		sql += ` AND ([redspotsinlateral] = 1)`;		
+	}
+	
+	if (document.getElementById('redspotsoutlateral').checked) {
+		sql += ` AND ([redspotsoutlateral] = 1)`;		
+	}
+
+	if (document.getElementById('redspotsdorsal').checked) {
+		sql += ` AND ([redspotsdorsal] = 1)`;		
+	}
+	
+	// Do query
+	console.log(sql);
+	var res = alasql(sql, [data]);
+	console.log(res);
+        document.getElementById('resultCount').innerHTML = res.length + " ";
+	var fishList = document.getElementById('resultsList');
+	fishList.innerHTML = '';
+	for (var i = 0; i < res.length; i++) {
+		// Populate element LatLineSelect with values from the select.
+		fishList.innerHTML = fishList.innerHTML + '<li>' + res[i].Species + '</li>';
+	}
+	
+}
+
+
+function initalizeForm() {
+
+	showFishResults();
+}
+
+
+
+
+</script>
+</head>
+<body>
+<div class="topnav">
+  <a href="index.html">Home</a>
+  <a href="carp.html">Cyprinidae</a>
+  <a class="active" href="salmon.html">Juvenile Salmoninae</a>
+</div>
+
+<div class="mainbody">
+<h1>Juvenile Salmoninae Features</h1>
+
+<div class="row"><div class="column"><div id="fishform"><form>
+<p>
+	<div class="radio-toolbar"><h2>Basic Pattern (excluding parr marks): [pick one]</h2>
+		<input type="radio" id="basicpattern-1" onclick="showFishResults();" name="basicpattern" value="-1" checked>
+			<label for="basicpattern-1">Unknown</label><br>
+		<input type="radio" id="basicpattern0" onclick="showFishResults();" name="basicpattern" value="0">
+			<label for="basicpattern0">Light spots on dark background</label><br>
+		<input type="radio" id="basicpattern1" onclick="showFishResults();" name="basicpattern" value="1">
+			<label for="basicpattern1">Dark spots on light background</label>
+	</div>
+</p>
+<p>
+	<div class="radio-toolbar"><h2>Anal fin leading edge: [pick one]</h2>
+		<input type="radio" id="afin-1" onclick="showFishResults();" name="afin" value="-1" checked>
+			<label for="afin-1">Unknown</label><br>
+		<input type="radio" id="afin0" onclick="showFishResults();" name="afin" value="0">
+			<label for="afin0">Short anal base 7 - 12 rays</label><br>
+		<input type="radio" id="afin1" onclick="showFishResults();" name="afin" value="1">
+			<label for="afin1">Long anal base 13 - 19 rays</label>
+			<h2>Anal fin edge: [pick any]</h2>
+		<input type="checkbox" id="analfinlong" onclick="showFishResults();" name="analfinlong" value="1">
+			<label for="analfinlong">leading edge long & sickle shaped</label><br>
+		<input type="checkbox" id="analfinwhite" onclick="showFishResults();" name="analfinwhite" value="1">
+			<label for="analfinwhite">leading edge white or white followed by black</label>
+	</div>
+</p>
+
+<p>
+<p>
+	<div class="radio-toolbar"><h2>Adipose: [pick any]</h2>
+		<input type="checkbox" id="adiposeblack" onclick="showFishResults();" name="adiposeblack" value="1">
+			<label for="adiposeblack">black margin, complete or almost (not in first spring)</label><br>
+		<input type="checkbox" id="adiposegrey" onclick="showFishResults();" name="adiposegrey" value="1">
+			<label for="adiposegrey">grey margin, usually not complete</label><br>
+		<input type="checkbox" id="adiposeorange" onclick="showFishResults();" name="adiposeorange" value="1">
+			<label for="adiposeorange">orange</label>
+	</div>
+</p>
+
+<p>
+	<div class="radio-toolbar"><h2>Red spots...: [pick any]</h2>
+		<input type="checkbox" id="redspotsblue" onclick="showFishResults();" name="redspotsblue" value="1">
+			<label for="redspotsblue">with blue to grey halos</label><br>
+		<input type="checkbox" id="redspotsinlateral" onclick="showFishResults();" name="redspotsinlateral" value="1">
+			<label for="redspotsinlateral">confined to lateral line (1 row)</label><br>
+		<input type="checkbox" id="redspotsoutlateral" onclick="showFishResults();" name="redspotsoutlateral" value="1">
+			<label for="redspotsoutlateral">above & below lateral line</label><br>
+		<input type="checkbox" id="redspotsdorsal" onclick="showFishResults();" name="redspotsdorsal" value="1">
+			<label for="redspotsdorsal">on dorsal fin</label>
+	</div>
+</p>
+
+<p>
+</p>
+</form>
+</div></div>
+<!--Results-->
+<div class="column">
+<h1><span id="resultCount"></span>Results</h1>
+<ol id="resultsList">
+<li>Loading...</li>
+</ol>
+</div></div>
+  <p><a href="https://www.flemingcollege/senrs"><img alt="Fleming College Website" src="https://geocommunity.net/Fleming-SENRS-Logo-BLK-type-CMYK.svg" width="200"></a></p>
+  <p>These keys were designed to be used within the Fleming College School of Natural Resource Sciences various Aquaculture courses and programs. Find more information at <a href="https://www.flemingcollege.ca/senrs" target="_blank">https://www.flemingcollege.ca/senrs</a></p>
+  <p>&copy; 2022 Shawn Morgan with contributions from Brian Round. 
+<script>
+  initalizeForm();
+</script>
+</div>
+</body>
+</html>
+
+
