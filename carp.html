@@ -2,12 +2,13 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minnows and Carps</title>
+<title>Minnows and Carps Features</title>
 <script src="https://cdn.jsdelivr.net/npm/alasql@1.7"></script>
 <style>
  body {
       font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans";
-  margin: 0;
+        margin: 0;
+
     }
 	
 * {
@@ -39,7 +40,6 @@
   background-color: #04AA6D;
   color: white;
 }
-
 
 .row {
   display: flex;
@@ -88,207 +88,596 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   padding: 20px;
 }
-/* Taken from https://markheath.net/post/customize-radio-button-css */
-.radio-toolbar {
-  margin: 10px;
-}
-
-.radio-toolbar input[type="radio"], .radio-toolbar input[type="checkbox"] {
-  opacity: 0;
-  position: fixed;
-  width: 0;
-}
-
-.radio-toolbar label {
-    display: inline-block;
-    background-color: #ddd;
-    padding: 10px 20px;
-    font-family: sans-serif, Arial;
-    font-size: 16px;
-    border: 2px solid #444;
-    border-radius: 4px;
-}
-
-.radio-toolbar label:hover {
-  background-color: #dfd;
-}
-
-.radio-toolbar input[type="radio"]:focus + label,
-.radio-toolbar input[type="checkbox"]:focus + label {
-    border: 2px solid #444;
-}
-
-.radio-toolbar input[type="radio"]:checked + label,
-.radio-toolbar input[type="checkbox"]:checked + label {
-    background-color: #bfb;
-    border-color: #4c4;
-}
 </style>
 
 <script>
 var data = [
  {
-   "Species": "Brook Trout",
-   "basicpattern": 0,
-   "analfinlen": 0,
-   "analfinlong": 0,
-   "analfinwhite": 1,
-   "adiposeblack": 1,
-   "adiposegrey": 1,
-   "adiposeorange": 0,
-   "redspotsblue": 1,
-   "redspotsinlateral": 0,
-   "redspotsoutlateral": 1,
-   "redspotsdorsal": 0
+   "Species": "Blackchin Shiner",
+   "LatLineMin": 31,
+   "LatLineMax": 38,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 1
  },
  {
-   "Species": "Lake Trout",
-   "basicpattern": 0,
-   "analfinlen": 0,
-   "analfinlong": 0,
-   "analfinwhite": 1,
-   "adiposeblack": 0,
-   "adiposegrey": 0,
-   "adiposeorange": 0,
-   "redspotsblue": 0,
-   "redspotsinlateral": 0,
-   "redspotsoutlateral": 0,
-   "redspotsdorsal": 0
+   "Species": "Blacknose Dace",
+   "LatLineMin": 56,
+   "LatLineMax": 68,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 6,
+   "AnalRayMax": 8,
+   "Barbels": 1,
+   "FrenumGroove": 1,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 1
  },
  {
-   "Species": "Atlantic Salmon",
-   "basicpattern": 1,
-   "analfinlen": 0,
-   "analfinlong": 0,
-   "analfinwhite": 0,
-   "adiposeblack": 0,
-   "adiposegrey": 0,
-   "adiposeorange": 1,
-   "redspotsblue": 0,
-   "redspotsinlateral": 1,
-   "redspotsoutlateral": 1,
-   "redspotsdorsal": 0
+   "Species": "Blacknose Shiner",
+   "LatLineMin": 32,
+   "LatLineMax": 40,
+   "DorsalMin": 7,
+   "DorsalMax": 9,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 0
  },
  {
-   "Species": "Brown Trout",
-   "basicpattern": 1,
-   "analfinlen": 0,
-   "analfinlong": 0,
-   "analfinwhite": 1,
-   "adiposeblack": 0,
-   "adiposegrey": 0,
-   "adiposeorange": 1,
-   "redspotsblue": 1,
-   "redspotsinlateral": 1,
-   "redspotsoutlateral": 1,
-   "redspotsdorsal": 1
+   "Species": "Bluntnose Minnow",
+   "LatLineMin": 42,
+   "LatLineMax": 50,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": 1,
+   "FrenumGroove": 0,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 0
  },
  {
-   "Species": "Rainbow Trout",
-   "basicpattern": 1,
-   "analfinlen": 0,
-   "analfinlong": 0,
-   "analfinwhite": 0,
-   "adiposeblack": 1,
-   "adiposegrey": 0,
-   "adiposeorange": 0,
-   "redspotsblue": 0,
-   "redspotsinlateral": 0,
-   "redspotsoutlateral": 0,
-   "redspotsdorsal": 0
+   "Species": "Brassy Minnow ",
+   "LatLineMin": 36,
+   "LatLineMax": 41,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 6,
+   "AnalRayMax": 9,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 1
  },
  {
-   "Species": "Chinook Salmon",
-   "basicpattern": 1,
-   "analfinlen": 1,
-   "analfinlong": 0,
-   "analfinwhite": 0,
-   "adiposeblack": 0,
-   "adiposegrey": 1,
-   "adiposeorange": 0,
-   "redspotsblue": 0,
-   "redspotsinlateral": 0,
-   "redspotsoutlateral": 0,
-   "redspotsdorsal": 0
+   "Species": "Bridle Shiner ",
+   "LatLineMin": 33,
+   "LatLineMax": 36,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 0
  },
  {
-   "Species": "Coho Salmon",
-   "basicpattern": 1,
-   "analfinlen": 1,
-   "analfinlong": 1,
-   "analfinwhite": 1,
-   "adiposeblack": 0,
-   "adiposegrey": 1,
-   "adiposeorange": 0,
-   "redspotsblue": 0,
-   "redspotsinlateral": 0,
-   "redspotsoutlateral": 0,
-   "redspotsdorsal": 0
+   "Species": "Central Stoneroller ",
+   "LatLineMin": 49,
+   "LatLineMax": 55,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 7,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 1
  },
  {
-   "Species": "Pink Salmon",
-   "basicpattern": 1,
-   "analfinlen": 1,
-   "analfinlong": 0,
-   "analfinwhite": 0,
-   "adiposeblack": 0,
-   "adiposegrey": 0,
-   "adiposeorange": 0,
-   "redspotsblue": 0,
-   "redspotsinlateral": 0,
-   "redspotsoutlateral": 0,
-   "redspotsdorsal": 0
+   "Species": "Common Carp ",
+   "LatLineMin": 35,
+   "LatLineMax": 39,
+   "DorsalMin": 15,
+   "DorsalMax": 15,
+   "AnalRayMin": 8,
+   "AnalRayMax": 9,
+   "Barbels": 2,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 1,
+   "BodyType": 2
+ },
+ {
+   "Species": "Common Shiner ",
+   "LatLineMin": 36,
+   "LatLineMax": 42,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 8,
+   "AnalRayMax": 10,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 2
+ },
+ {
+   "Species": "Creek Chub ",
+   "LatLineMin": 52,
+   "LatLineMax": 62,
+   "DorsalMin": 8,
+   "DorsalMax": 9,
+   "AnalRayMin": 7,
+   "AnalRayMax": 9,
+   "Barbels": 0,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 1
+ },
+ {
+   "Species": "Cutlip Minnow",
+   "LatLineMin": 50,
+   "LatLineMax": 53,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 7,
+   "Barbels": -1,
+   "FrenumGroove": 1,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 1
+ },
+ {
+   "Species": "Eastern Silvery Minnow",
+   "LatLineMin": 38,
+   "LatLineMax": 40,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 8,
+   "AnalRayMax": 9,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 1
+ },
+ {
+   "Species": "Emerald Shiner ",
+   "LatLineMin": 38,
+   "LatLineMax": 43,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 10,
+   "AnalRayMax": 13,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 0
+ },
+ {
+   "Species": "Fallfish ",
+   "LatLineMin": 43,
+   "LatLineMax": 50,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 9,
+   "Barbels": 0,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 1,
+   "BodyType": 1
+ },
+ {
+   "Species": "Fathead Minnow",
+   "LatLineMin": 41,
+   "LatLineMax": 54,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 7,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 2
+ },
+ {
+   "Species": "Finescale Dace",
+   "LatLineMin": 63,
+   "LatLineMax": 85,
+   "DorsalMin": 7,
+   "DorsalMax": 9,
+   "AnalRayMin": 7,
+   "AnalRayMax": 9,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 1
+ },
+ {
+   "Species": "Ghost Shiner ",
+   "LatLineMin": 30,
+   "LatLineMax": 35,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 8,
+   "AnalRayMax": 8,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 1,
+   "BodyType": 1
+ },
+ {
+   "Species": "Golden Shiner",
+   "LatLineMin": 44,
+   "LatLineMax": 54,
+   "DorsalMin": 7,
+   "DorsalMax": 9,
+   "AnalRayMin": 11,
+   "AnalRayMax": 13,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 2
+ },
+ {
+   "Species": "Goldfish",
+   "LatLineMin": 25,
+   "LatLineMax": 32,
+   "DorsalMin": 15,
+   "DorsalMax": 15,
+   "AnalRayMin": 5,
+   "AnalRayMax": 6,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 2
+ },
+ {
+   "Species": "Gravel Chub",
+   "LatLineMin": 38,
+   "LatLineMax": 45,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 7,
+   "Barbels": 1,
+   "FrenumGroove": 0,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 0
+ },
+ {
+   "Species": "Hornyhead Chub",
+   "LatLineMin": 40,
+   "LatLineMax": 48,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": 1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 1,
+   "BodyType": 1
+ },
+ {
+   "Species": "Lake Chub",
+   "LatLineMin": 53,
+   "LatLineMax": 79,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 9,
+   "Barbels": 1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 1,
+   "BodyType": 0
+ },
+ {
+   "Species": "Longnose Dace",
+   "LatLineMin": 61,
+   "LatLineMax": 72,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 7,
+   "Barbels": 1,
+   "FrenumGroove": 1,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 0
+ },
+ {
+   "Species": "Mimic Shiner",
+   "LatLineMin": 36,
+   "LatLineMax": 39,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 8,
+   "AnalRayMax": 9,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 0
+ },
+ {
+   "Species": "Northern Pearl Dace",
+   "LatLineMin": 65,
+   "LatLineMax": 75,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": 0,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 1,
+   "BodyType": 0
+ },
+ {
+   "Species": "Northern Redbelly Dace",
+   "LatLineMin": 70,
+   "LatLineMax": 90,
+   "DorsalMin": 7,
+   "DorsalMax": 9,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 1
+ },
+ {
+   "Species": "Pugnose Minnow",
+   "LatLineMin": 35,
+   "LatLineMax": 41,
+   "DorsalMin": 9,
+   "DorsalMax": 9,
+   "AnalRayMin": 8,
+   "AnalRayMax": 8,
+   "Barbels": 1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 1
+ },
+ {
+   "Species": "Pugnose Shiner",
+   "LatLineMin": 34,
+   "LatLineMax": 38,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 0
+ },
+ {
+   "Species": "Redfin Shiner",
+   "LatLineMin": 39,
+   "LatLineMax": 46,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 10,
+   "AnalRayMax": 12,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 1
+ },
+ {
+   "Species": "Redside Dace",
+   "LatLineMin": 63,
+   "LatLineMax": 70,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 8,
+   "AnalRayMax": 10,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 1
+ },
+ {
+   "Species": "River Chub ",
+   "LatLineMin": 39,
+   "LatLineMax": 43,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": 1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 1,
+   "BodyType": 1
+ },
+ {
+   "Species": "Roseyface Shiner",
+   "LatLineMin": 37,
+   "LatLineMax": 41,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 9,
+   "AnalRayMax": 11,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 0
+ },
+ {
+   "Species": "Rudd ",
+   "LatLineMin": 36,
+   "LatLineMax": 45,
+   "DorsalMin": 8,
+   "DorsalMax": 9,
+   "AnalRayMin": 10,
+   "AnalRayMax": 11,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 2
+ },
+ {
+   "Species": "Sand Shiner",
+   "LatLineMin": 31,
+   "LatLineMax": 38,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 6,
+   "AnalRayMax": 7,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 0
+ },
+ {
+   "Species": "Silver Chub",
+   "LatLineMin": 35,
+   "LatLineMax": 41,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": 1,
+   "FrenumGroove": 0,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 1
+ },
+ {
+   "Species": "Silver Shiner ",
+   "LatLineMin": 36,
+   "LatLineMax": 43,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 9,
+   "AnalRayMax": 11,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 0
+ },
+ {
+   "Species": "Spotfin Shiner",
+   "LatLineMin": 35,
+   "LatLineMax": 41,
+   "DorsalMin": 7,
+   "DorsalMax": 8,
+   "AnalRayMin": 7,
+   "AnalRayMax": 9,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 1
+ },
+ {
+   "Species": "Spottail Shiner ",
+   "LatLineMin": 37,
+   "LatLineMax": 39,
+   "DorsalMin": 8,
+   "DorsalMax": 9,
+   "AnalRayMin": 7,
+   "AnalRayMax": 8,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 0,
+   "MouthSubterm": 1,
+   "BodyType": 0
+ },
+ {
+   "Species": "Striped Shiner ",
+   "LatLineMin": 36,
+   "LatLineMax": 42,
+   "DorsalMin": 8,
+   "DorsalMax": 8,
+   "AnalRayMin": 8,
+   "AnalRayMax": 9,
+   "Barbels": -1,
+   "FrenumGroove": 0,
+   "MouthTerm": 1,
+   "MouthSubterm": 0,
+   "BodyType": 2
  }
 ];
 
 function showFishResults() {
+	var LatLineValue = document.getElementById("LatLineSelect").value;
 	var sql = `SELECT Species FROM ? WHERE 1=1`  // Starts SQL statement
-	var selecteditem = (document.querySelector('input[name="basicpattern"]:checked').value);
-	if (selecteditem >= 0) {
-		sql += ` AND ([basicpattern] = ${selecteditem})`;
+	
+	if (LatLineValue >= 0) {
+		sql += ` AND ([LatLineMin] <= ${LatLineValue}) AND ([LatLineMax] >= ${LatLineValue})`;
 	}
-
-	selecteditem = (document.querySelector('input[name="afin"]:checked').value);
-	if (selecteditem >= 0) {
-		sql += ` AND ([analfinlen] = ${selecteditem})`;
+	var DorsalRayValue = document.getElementById('DorsalRaySelect').value;
+	if (DorsalRayValue >= 0) {
+		sql += ` AND ([DorsalMin] <= ${DorsalRayValue}) AND ([DorsalMax] >= ${DorsalRayValue})`;
+	}
+	var AnalRayValue = document.getElementById('AnalRaySelect').value;
+	if (AnalRayValue >= 0) {
+		sql += ` AND ([AnalRayMin] <= ${AnalRayValue}) AND ([AnalRayMax] >= ${AnalRayValue})`;
+	}
+	var BarbelsValue = document.getElementById('BarbelsSelect').value;
+	if (BarbelsValue >= 0) {
+		sql += ` AND ([Barbels] = ${BarbelsValue})`;
 	}
 	
-	
-	if (document.getElementById('analfinlong').checked) {
-		sql += ` AND ([analfinlong] = 1)`;		
+	var FrenumValue = document.getElementById('FrenumSelect').value;
+	if (FrenumValue >= 0) {
+		sql += ` AND ([FrenumGroove] = ${FrenumValue})`;
 	}
 
-	if (document.getElementById('analfinwhite').checked) {
-		sql += ` AND ([analfinwhite] = 1)`;		
-	}
-
-	if (document.getElementById('adiposeblack').checked) {
-		sql += ` AND ([adiposeblack] = 1)`;		
+	var BodyTypeValue = document.getElementById('BodyTypeSelect').value;
+	if (BodyTypeValue >= 0) {
+		sql += ` AND ([BodyType] = ${BodyTypeValue})`;
 	}
 	
-	if (document.getElementById('adiposegrey').checked) {
-		sql += ` AND ([adiposegrey] = 1)`;		
-	}
-	
-	if (document.getElementById('adiposeorange').checked) {
-		sql += ` AND ([adiposeorange] = 1)`;		
+	if (document.getElementById('MouthTerminalCheck').checked == true) {
+		sql += ' AND [MouthTerm] = 1';
 	}
 
-	if (document.getElementById('redspotsblue').checked) {
-		sql += ` AND ([redspotsblue] = 1)`;		
+	if (document.getElementById('MouthSubTerminalCheck').checked == true) {
+		sql += ' AND [MouthSubterm] = 1';
 	}
 
-	if (document.getElementById('redspotsinlateral').checked) {
-		sql += ` AND ([redspotsinlateral] = 1)`;		
-	}
-	
-	if (document.getElementById('redspotsoutlateral').checked) {
-		sql += ` AND ([redspotsoutlateral] = 1)`;		
-	}
-
-	if (document.getElementById('redspotsdorsal').checked) {
-		sql += ` AND ([redspotsdorsal] = 1)`;		
-	}
 	
 	// Do query
 	console.log(sql);
@@ -306,6 +695,24 @@ function showFishResults() {
 
 
 function initalizeForm() {
+	var ele = document.getElementById('LatLineSelect');
+	for (var i = 25; i < 91; i++) {
+		// Populate element LatLineSelect with values from 25 to 90.
+		ele.innerHTML = ele.innerHTML + '<option value="' + i + '">' + i + '</option>';
+	}
+
+	ele = document.getElementById('DorsalRaySelect');
+	for (var i = 7; i < 16; i++) {
+		// Populate element LatLineSelect with values.
+		ele.innerHTML = ele.innerHTML + '<option value="' + i + '">' + i + '</option>';
+	}	
+
+	ele = document.getElementById('AnalRaySelect');
+	for (var i = 5; i < 14; i++) {
+		// Populate element LatLineSelect with values.
+		ele.innerHTML = ele.innerHTML + '<option value="' + i + '">' + i + '</option>';
+	}	
+
 
 	showFishResults();
 }
@@ -318,66 +725,70 @@ function initalizeForm() {
 <body>
 <div class="topnav">
   <a href="index.html">Home</a>
-  <a href="carp.html">Carps/Minnows</a>
-  <a class="active" href="salmon.html">Juvenile Salmoninae</a>
+  <a class="active" href="carp.html">Carps/Minnows</a>
+  <a href="salmon.html">Juvenile Salmoninae</a>
 </div>
-
 <div class="mainbody">
-<h1>Juvenile Salmoninae Features</h1>
+<h1>Carps and Minnows Features</h1>
 
 <div class="row"><div class="column"><div id="fishform"><form>
 <p>
-	<div class="radio-toolbar"><h2>Basic Pattern (excluding parr marks): [pick one]</h2>
-		<input type="radio" id="basicpattern-1" onclick="showFishResults();" name="basicpattern" value="-1" checked>
-			<label for="basicpattern-1">Unknown</label><br>
-		<input type="radio" id="basicpattern0" onclick="showFishResults();" name="basicpattern" value="0">
-			<label for="basicpattern0">Light spots on dark background</label><br>
-		<input type="radio" id="basicpattern1" onclick="showFishResults();" name="basicpattern" value="1">
-			<label for="basicpattern1">Dark spots on light background</label>
-	</div>
-</p>
-<p>
-	<div class="radio-toolbar"><h2>Anal fin leading edge: [pick one]</h2>
-		<input type="radio" id="afin-1" onclick="showFishResults();" name="afin" value="-1" checked>
-			<label for="afin-1">Unknown</label><br>
-		<input type="radio" id="afin0" onclick="showFishResults();" name="afin" value="0">
-			<label for="afin0">Short anal base 7 - 12 rays</label><br>
-		<input type="radio" id="afin1" onclick="showFishResults();" name="afin" value="1">
-			<label for="afin1">Long anal base 13 - 19 rays</label>
-			<h2>Anal fin edge: [pick any]</h2>
-		<input type="checkbox" id="analfinlong" onclick="showFishResults();" name="analfinlong" value="1">
-			<label for="analfinlong">leading edge long & sickle shaped</label><br>
-		<input type="checkbox" id="analfinwhite" onclick="showFishResults();" name="analfinwhite" value="1">
-			<label for="analfinwhite">leading edge white or white followed by black</label>
-	</div>
-</p>
+<label for="LatLineSelect">Lateral line scale count:</label>
 
-<p>
-<p>
-	<div class="radio-toolbar"><h2>Adipose: [pick any]</h2>
-		<input type="checkbox" id="adiposeblack" onclick="showFishResults();" name="adiposeblack" value="1">
-			<label for="adiposeblack">black margin, complete or almost (not in first spring)</label><br>
-		<input type="checkbox" id="adiposegrey" onclick="showFishResults();" name="adiposegrey" value="1">
-			<label for="adiposegrey">grey margin, usually not complete</label><br>
-		<input type="checkbox" id="adiposeorange" onclick="showFishResults();" name="adiposeorange" value="1">
-			<label for="adiposeorange">orange</label>
-	</div>
+<select name="LatLineSelect" onchange="showFishResults()" id="LatLineSelect">
+	<option selected value="-1">N/A</option>
+</select>
 </p>
-
 <p>
-	<div class="radio-toolbar"><h2>Red spots...: [pick any]</h2>
-		<input type="checkbox" id="redspotsblue" onclick="showFishResults();" name="redspotsblue" value="1">
-			<label for="redspotsblue">with blue to grey halos</label><br>
-		<input type="checkbox" id="redspotsinlateral" onclick="showFishResults();" name="redspotsinlateral" value="1">
-			<label for="redspotsinlateral">confined to lateral line (1 row)</label><br>
-		<input type="checkbox" id="redspotsoutlateral" onclick="showFishResults();" name="redspotsoutlateral" value="1">
-			<label for="redspotsoutlateral">above & below lateral line</label><br>
-		<input type="checkbox" id="redspotsdorsal" onclick="showFishResults();" name="redspotsdorsal" value="1">
-			<label for="redspotsdorsal">on dorsal fin</label>
-	</div>
+<label for="DorsalRaySelect">Dorsal fin ray count:</label>
+
+<select name="DorsalRaySelect" onchange="showFishResults()" id="DorsalRaySelect">
+	<option selected value="-1">N/A</option>
+</select>
 </p>
-
 <p>
+<label for="AnalRaySelect">Anal fin ray count:</label>
+
+<select name="AnalRaySelect" onchange="showFishResults()" id="AnalRaySelect">
+	<option selected value="-1">N/A</option>
+</select>
+</p>
+<p>
+<label for="BarbelsSelect">Barbels:</label>
+
+<select name="BarbelsSelect" size="4" onchange="showFishResults()" id="BarbelsSelect">
+	<option selected value="-1">N/A</option>
+	<option value="0">Hidden in groove</option>
+	<option value="1">Terminal</option>
+	<option value="2">2 Pair</option>
+</select>
+</p>
+<p>
+<label for="FrenumSelect">Frenum or Groove:</label>
+
+<select name="FrenumSelect" size="3" onchange="showFishResults()" id="FrenumSelect">
+	<option selected value="-1">N/A</option>
+	<option value="1">Frenum</option>
+	<option value="0">Groove</option>
+</select>
+</p>
+<p>
+<input type="checkbox" id="MouthTerminalCheck" name="MouthTerminal" value="1" onclick="showFishResults()">
+<label for="MouthTerminalCheck">Mouth Terminal</label><br>
+</p>
+<p>
+<input type="checkbox" id="MouthSubTerminalCheck" name="MouthSubTerminal" value="1" onclick="showFishResults()">
+<label for="MouthSubTerminalCheck">Mouth Subterminal</label><br>
+</p>
+<p>
+<label for="BodyTypeSelect">Body type:</label>
+
+<select name="BodyTypeSelect" size="4" onchange="showFishResults()" id="BodyTypeSelect">
+	<option selected value="-1">N/A</option>
+	<option value="0">Elongated</option>
+	<option value="1">Slight deep bodied</option>
+	<option value="2">Deep bodied</option>
+</select>
 </p>
 </form>
 </div></div>
@@ -399,5 +810,3 @@ function initalizeForm() {
 </div>
 </body>
 </html>
-
-
